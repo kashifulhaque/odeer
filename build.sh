@@ -1,0 +1,1 @@
+go build -o endergpt cmd/endergpt/main.go

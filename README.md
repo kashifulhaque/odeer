@@ -2,7 +2,7 @@
 > **No harm or foul to [ollama guys](https://github.com/ollama/ollama), they did a fantastic job!**
 
 ### 🦌 **Download**
-**You can download it here:** [Download link](https://github.com/kashifulhaque/odeer/releases/download/v0.1.3/odeer)
+**You can download it here:** [Download link](https://github.com/kashifulhaque/odeer/releases/download/v0.1.3/odeer) and run `odeer talk`
 
 ### 🏃‍♂️ **Steps to run it**
 > Well, I couldn't get the GitHub Actions thingy to work, which should've compiled it and built an executable

@@ -1,1 +1,1 @@
-go run cmd/endergpt/main.go
+go run cmd/odeer/main.go

@@ -10,7 +10,7 @@ import (
 	"strings"
 )
 
-func RunConversation(config *config.Config) {
+func Run(config *config.Config) {
 	messages := []models.Message{
 		{
 			Role:    "system",

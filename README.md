@@ -1,9 +1,8 @@
-### 🦌 **Odeer**
-> TIL, you can actually use LLMs via an API using Cloudflare Workers AI
-**No harm or foul to [ollama guys](https://github.com/ollama/ollama), they did a fantastic job!**
+## 🦌 **Odeer**
+> **No harm or foul to [ollama guys](https://github.com/ollama/ollama), they did a fantastic job!**
 
 ### 🏃‍♂️ **Steps to run it**
-> Well, I couldn't get the GitHub Action thingy to work, which should've compiled it and built an executable
+> Well, I couldn't get the GitHub Actions thingy to work, which should've compiled it and built an executable
 1. Register for a [Cloudflare](https://www.cloudflare.com/) account, if not already
 2. Goto [Cloudflare Dashboard](https://dash.cloudflare.com/)
 3. On the left menu, go to **AI** > **Workers AI** > **Use REST API** button
@@ -13,5 +12,11 @@
 ```sh
 git clone https://github.com/kashifulhaque/odeer;
 cd odeer;
-sh run.sh;
+sh build.sh;
+odeer talk;
 ```
+
+### 🌐 **[WIP] An API server**
+> You should be able to run your own API server soon™. It is work in progress as of yet!
+
+`odeer start` starts a server on PORT 8080

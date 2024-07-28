@@ -1,0 +1,43 @@
+# GitHub Action YAML file reference: https://github.com/akrabat/rodeo/blob/main/.github/workflows/build-release-binaries.yml
+name: Build a release binary
+
+on:
+  release:
+    types:
+      - created
+
+jobs:
+  build:
+    name: Build Release Assets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Go
+        uses: actions/setup-go@v1
+        with:
+          go-version: 1.22.3
+      
+      - name: Display the version of go
+        run: go version
+      
+      - name: Display the release tag
+        run: echo ${{ github.event.release.tag_name }}
+      
+      - name: "DEBUG: What's our directory & what's in it?"
+        run: pwd && ls
+      
+      - name: Build the odeer executable
+        run: ./build.sh
+      
+      - name: List the executable
+        run: ls -l
+      
+      - name: Upload the binary
+        uses: actions/svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref }}
+          file: ./odeer
+          file_glob: true

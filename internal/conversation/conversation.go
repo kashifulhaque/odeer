@@ -3,14 +3,59 @@ package conversation
 import (
 	"bufio"
 	"fmt"
+	"os"
+	"strings"
+
 	"odeer/internal/api"
 	"odeer/internal/config"
 	"odeer/internal/models"
-	"os"
-	"strings"
+
+	"github.com/charmbracelet/bubbles/textarea"
+	"github.com/charmbracelet/bubbles/viewport"
+	tea "github.com/charmbracelet/bubbletea"
+	"github.com/charmbracelet/lipgloss"
 )
 
+type model struct {
+	viewport    viewport.Model
+	messages    []models.Message
+	textarea    textarea.Model
+	senderStyle lipgloss.Style
+	err         error
+}
+
+func initialModel() model {
+	ta := textarea.New()
+	ta.Placeholder = "Say something ..."
+	ta.Focus()
+
+	ta.Prompt = "┃ "
+	ta.CharLimit = 500
+
+	ta.SetWidth(30)
+	ta.SetHeight(3)
+
+	// Remove cursor line styling
+	ta.FocusedStyle.CursorLine = lipgloss.NewStyle()
+
+	ta.ShowLineNumbers = false
+
+	vp := viewport.New(30, 5)
+	vp.SetContent(`🦌 odeer
+	Type a message and press Enter to send.`)
+	ta.KeyMap.InsertNewline.SetEnabled(false)
+
+	return model{
+		textarea:    ta,
+		messages:    []models.Message,
+		viewport:    vp,
+		senderStyle: lipgloss.NewStyle().Foreground(lipgloss.Color("5")),
+		err:         nil,
+	}
+}
+
 func Run(config *config.Config) {
+	p := tea.NewProgram(initialModel())
 	messages := []models.Message{
 		{
 			Role:    "system",

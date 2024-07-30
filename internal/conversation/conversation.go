@@ -65,7 +65,7 @@ func initialModel() model {
 
 	ta.ShowLineNumbers = false
 
-	vp := viewport.New(500, 50)
+	vp := viewport.New(120, 50)
 	vp.SetContent(`🦌 odeer`)
 
 	ta.KeyMap.InsertNewline.SetEnabled(false)
@@ -101,7 +101,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		case tea.KeyEnter:
 			if !m.loading {
 				userMessage := m.textarea.Value()
-				m.messages = append(m.messages, m.senderStyle.Render("👤 ")+userMessage)
+				m.messages = append(m.messages, m.senderStyle.Render("\n👤 ")+userMessage)
 				m.viewport.SetContent(strings.Join(m.messages, "\n"))
 				m.textarea.Reset()
 				m.viewport.GotoBottom()

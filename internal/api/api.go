@@ -49,7 +49,6 @@ func CreatePayload(messages []models.Message) (string, error) {
 
 func ProcessResponse(resp *http.Response) (string, error) {
 	scanner := bufio.NewScanner(resp.Body)
-	fmt.Print("✨ ")
 	var assistantResponse strings.Builder
 
 	for scanner.Scan() {
@@ -63,7 +62,6 @@ func ProcessResponse(resp *http.Response) (string, error) {
 					return "", fmt.Errorf("error unmarshalling JSON: %w", err)
 				}
 				if response, ok := responseData["response"].(string); ok {
-					fmt.Print(response)
 					assistantResponse.WriteString(response)
 				}
 			}

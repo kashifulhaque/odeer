@@ -2,7 +2,11 @@ package config
 
 import (
 	"errors"
-	"os"
+)
+
+var (
+  accountID string
+  authToken string
 )
 
 type Config struct {
@@ -12,9 +16,6 @@ type Config struct {
 }
 
 func LoadConfig() (*Config, error) {
-	accountID := os.Getenv("CLOUDFLARE_ACCOUNT_ID")
-	authToken := os.Getenv("CLOUDFLARE_WORKERS_AI_API_KEY")
-
 	if accountID == "" || authToken == "" {
 		return nil, errors.New("missing required environment variables")
 	}

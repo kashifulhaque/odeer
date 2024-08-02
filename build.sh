@@ -14,4 +14,4 @@ elif [ "$OS_ARCH" = "aarch64" ]; then
 fi
 
 # Build the odeer executable
-GOOS=$OS_NAME GOARCH=$OS_ARCH go build -o odeer cmd/odeer/main.go
+GOOS=$OS_NAME GOARCH=$OS_ARCH go build -ldflags "-X odeer/internal/config.accountID=$CLOUDFLARE_ACCOUNT_ID -X odeer/internal/config.authToken=$CLOUDFLARE_WORKERS_AI_API_KEY" -o odeer cmd/odeer/main.go
